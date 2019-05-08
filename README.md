@@ -1,5 +1,13 @@
 # nature_inspired_genetic_algo
-Homework for nature inspired algorithms course. Assignment is to solve the minimum make span problem using a genetic algorithm.
+Homework for nature inspired algorithms course. Assignment is to solve the minimum
+make-span problem using a genetic algorithm.
+
+# How to Build and Run
+To compile the code, when in the nature_inspired_genetic_algo directory run
+
+```
+javac genetic/*.java
+```
 
 # Parts of a genetic algorithm
 1) Initializer

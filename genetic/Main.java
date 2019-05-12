@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Problem problem = new Problem(3, 6, "data/test3_6.csv");
-        System.out.println(problem);
-        Chromosome chromosome = new Chromosome(problem);
-        System.out.println(chromosome.getProblem());
+        Initializer initializer = new InitializerRandom();
+        Collection<Chromosome> population = initializer.initializePopulation(problem, 10);
 
+        Chromosome chromosome = new Chromosome(problem);
         chromosome.setElement(0, 0, 0);
         chromosome.setElement(0, 1, 2);
         chromosome.setElement(0, 2, 1);
@@ -30,13 +30,7 @@ public class Main {
         chromosome.setElement(2, 3, 4);
         chromosome.setElement(2, 4, 0);
         chromosome.setElement(2, 5, 1);
-
         chromosome.setInitialized();
-
-        System.out.println(chromosome);
-        System.out.println(chromosome.solutionToString());
-
-        System.out.println("fitness is " + chromosome.getFitness());
 
         // Mutator testing
         Collection<Chromosome> mating_pool = new ArrayList<>();

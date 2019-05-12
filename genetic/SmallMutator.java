@@ -22,7 +22,7 @@ public class SmallMutator implements Mutator {
       int n = chromosome.getProblem().getNumJobs();
 
       // Small modification to each machine in each chromosome
-      for (int i = 0; i < n; i++) {
+      for (int i = 0; i < m; i++) {
         Collections.shuffle(randIdxs);
         int firstSwap = chromosome.getElement(i, randIdxs.get(0));
         int secondSwap = chromosome.getElement(i, randIdxs.get(1));

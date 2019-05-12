@@ -1,5 +1,8 @@
 package genetic;
 
+import java.util.Collection;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Problem problem = new Problem(3, 6, "data/test3_6.csv");
@@ -34,5 +37,19 @@ public class Main {
         System.out.println(chromosome.solutionToString());
 
         System.out.println("fitness is " + chromosome.getFitness());
+
+        // Mutator testing
+        Collection<Chromosome> mating_pool = new ArrayList<>();
+        mating_pool.add(chromosome);
+        System.out.println("-- OG Pool --");
+        System.out.println(mating_pool);
+        System.out.println("-- Small Mutator Pool --");
+        Mutator mutator = new SmallMutator();
+        mutator.mutate(mating_pool);
+        System.out.println(mating_pool);
+        System.out.println("-- Large Mutator Pool --");
+        mutator = new LargeMutator();
+        mutator.mutate(mating_pool);
+        System.out.println(mating_pool);
     }    
 }

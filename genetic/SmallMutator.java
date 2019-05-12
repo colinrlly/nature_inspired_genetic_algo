@@ -13,7 +13,7 @@ public class SmallMutator implements Mutator {
     // Helper array to get two random, distinct, indexes
     ArrayList<Integer> randIdxs = new ArrayList<>();
     for (int i = 0; i < mating_pool.iterator().next().getProblem().getNumJobs(); i++) {
-      randIdxs.add(new Integer(i));
+      randIdxs.add(i);
     }
 
     // Loop through all chromosomes

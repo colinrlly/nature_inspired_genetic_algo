@@ -3,12 +3,12 @@ package genetic;
 import java.util.Collection;
 import java.util.Random;
 
-Random rand = new Random();
-
 /**
  * Large modification of chromosomes
  */
 public class LargeMutator implements Mutator {
+
+  Random rand = new Random();
 
   public Collection<Chromesome> mutate(Collection<Chromosome> mating_pool) {
     // Loop through all chromosomes

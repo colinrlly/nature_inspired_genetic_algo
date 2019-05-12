@@ -5,6 +5,7 @@ public class Main {
         Problem problem = new Problem(3, 6, "data/test3_6.csv");
         System.out.println(problem);
         Chromosome chromosome = new Chromosome(problem);
+        System.out.println(chromosome.getProblem());
 
         chromosome.setElement(0, 0, 0);
         chromosome.setElement(0, 1, 2);

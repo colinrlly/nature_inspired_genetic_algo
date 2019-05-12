@@ -143,6 +143,13 @@ public class Chromosome {
     }
 
     /**
+     * Returns the problem instance this Chromosome was initialized with.
+     */
+    public Problem getProblem() {
+        return this.problem;
+    }
+
+    /**
      * Returns the fitness of this chromosome.
      * 
      * Fitness is max(time to complete a machine).

@@ -7,6 +7,7 @@ public class SteadyStateElitist implements Replacer {
 
     //number of chromosomes to switch
     private int n = 20;
+    //random comment to commit change
 
     @Override
     public Collection<Chromosome> replace(Collection<Chromosome> population, Collection<Chromosome> offspring) {

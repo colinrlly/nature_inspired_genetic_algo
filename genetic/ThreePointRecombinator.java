@@ -19,9 +19,11 @@ public class ThreePointRecombinator implements Recombiner {
 
         // nested for loop, every chromosome is recombined with every other one, except itself
         // leading to n^2 offspring
+        int num_of_iters = 0;
         for (Chromosome chr1 : mating_pool){
             for (Chromosome chr2 : mating_pool){
-                if(chr1.equals(chr2)){
+                num_of_iters++;
+                if(chr1.toString().equals(chr2.toString())){
                     continue;
                 }
                 crossoffspring = threepointCrossover(chr1, chr2);
@@ -30,6 +32,9 @@ public class ThreePointRecombinator implements Recombiner {
                 offspring.add(first);
                 first = crossoffspring.iterator().next();
                 offspring.add(first);
+            }
+            if(num_of_iters == mating_pool.size()){
+                break;
             }
         }
         return offspring;
@@ -47,20 +52,22 @@ public class ThreePointRecombinator implements Recombiner {
 
         // Collection that holds the offspring of the two given parent Chromosomes
         Collection<Chromosome> offspring = new ArrayList<>();
-        Chromosome offspring1 = null;
-        Chromosome offspring2 = null;
+        Chromosome offspring1 = new Chromosome(parent1.getProblem());
+        Chromosome offspring2 = new Chromosome(parent2.getProblem());
 
         // this block generates three random points within the bounds of the array size
         // and sorts them in ascending order to facilitate iteration though the chromosomes
         Random randGen = new Random();
         int[] threepoints = new int[3];
-        threepoints[0] = randGen.nextInt(col);
-        threepoints[1] = randGen.nextInt(col);
-        threepoints[2] = randGen.nextInt(col);
+        threepoints[0] = randGen.nextInt(row);
+        threepoints[1] = randGen.nextInt(row);
+        threepoints[2] = randGen.nextInt(row);
         Arrays.sort(threepoints);
         int point1 = threepoints[0];
         int point2 = threepoints[1];
         int point3 = threepoints[2];
+
+        //System.out.println("first random point: " + point1 + " second random point: " + point2 + " third random point: " + point3);
 
 
         // three separate for loops that iterate through all of the rows of the parent
@@ -84,6 +91,13 @@ public class ThreePointRecombinator implements Recombiner {
             for (int j = 0; j < col; j++){
                 offspring1.setElement(i, j, parent1.getElement(i,j));
                 offspring2.setElement(i, j, parent2.getElement(i,j));
+            }
+        }
+
+        for (int i = point3; i < row; i++){
+            for (int j = 0; j < col; j++){
+                offspring1.setElement(i, j, parent2.getElement(i,j));
+                offspring2.setElement(i, j, parent1.getElement(i,j));
             }
         }
 

@@ -17,9 +17,11 @@ public class UniformRecombinator implements Recombiner {
 
         // nested for loop, every chromosome is recombined with every other one, except itself
         // leading to n^2 offspring
+        int num_of_iters = 0;
         for (Chromosome chr1 : mating_pool){
             for (Chromosome chr2 : mating_pool){
-                if(chr1.equals(chr2)){
+                num_of_iters++;
+                if(chr1.toString().equals(chr2.toString())){
                     continue;
                 }
                 crossoffspring = uniformCrossover(chr1, chr2);
@@ -28,6 +30,9 @@ public class UniformRecombinator implements Recombiner {
                 offspring.add(first);
                 first = crossoffspring.iterator().next();
                 offspring.add(first);
+            }
+            if(num_of_iters == mating_pool.size()){
+                break;
             }
         }
         return offspring;
@@ -50,28 +55,27 @@ public class UniformRecombinator implements Recombiner {
         int col = parent1.getProblem().getNumJobs();
 
         Collection<Chromosome> offspring = new ArrayList<>();
-        Chromosome offspring1 = null;
-        Chromosome offspring2 = null;
+        Chromosome offspring1 = new Chromosome(parent1.getProblem());
+        Chromosome offspring2 = new Chromosome(parent2.getProblem());
 
         // nested for loop that iterates through the rows of the parents
         for (int i = 0; i < row; i++){
-            for (int j = 0; j < col; j++){
+            // generates a random real number from 0 to 1
+            prob = Math.random();
 
-                // generates a random real number from 0 to 1
-                prob = Math.random();
-
-                // if the number generated is larger than 0.5, the first offspring receives gene from the
-                // first parent, and second offspring recieves gene from second parent
-                if(prob > 0.5){
+            // if the number generated is larger than 0.5, the first offspring receives gene from the
+            // first parent, and second offspring recieves gene from second parent
+            if(prob > 0.5){
+                for (int j = 0; j < col; j++){
                     offspring1.setElement(i, j, parent1.getElement(i, j));
                     offspring2.setElement(i, j, parent2.getElement(i, j));
-
-                // if the number generates is lower than 0.5, then the inverse happens, so each offspring has
-                // a roughly even chance to inherit a gene from either parent
-                }else{
+                }
+            }else{
+                for (int j = 0; j < col; j++){
                     offspring1.setElement(i, j, parent2.getElement(i, j));
                     offspring2.setElement(i, j, parent1.getElement(i, j));
                 }
+
             }
         }
 

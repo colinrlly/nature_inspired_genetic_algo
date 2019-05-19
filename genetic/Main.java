@@ -5,14 +5,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Problem problem = new Problem(3, 6, "data/test3_6.csv");
-        Initializer initializer = new InitializerRandom();
-        Collection<Chromosome> population = initializer.initializePopulation(problem, 10);
 
-        Selector selector = new SelectorPickBest();
-        Collection<Chromosome> mating_pool = selector.select(problem, population, 5);
 
-        System.out.println(mating_pool);
+        //Selector selector = new SelectorPickBest();
+        //Collection<Chromosome> mating_pool = selector.select(problem, population, 5);
+
+        //System.out.println(mating_pool);
 
         // Chromosome chromosome = new Chromosome(problem);
         // chromosome.setElement(0, 0, 0);
@@ -89,5 +87,39 @@ public class Main {
         // UniformRecombinator uniform = new UniformRecombinator();
         // Collection<Chromosome> uniform_result = uniform.recombine(recombiner_mating_pool);
         // System.out.println(uniform_result);
+        Problem problem = new Problem(3, 6, "data/test3_6.csv");
+        Initializer initializer = new InitializerRandom();
+        Collection<Chromosome> population = initializer.initializePopulation(problem, 10);
+
+
+        Selector selector = new SelectorPickBest();
+        Mutator mutator = new SmallMutator();
+        ThreePointRecombinator recombinator = new ThreePointRecombinator();
+        ElitistReplacer replacer = new ElitistReplacer();
+        int numberOfTrials = 10;
+
+        for(int x = 0; x < numberOfTrials; x++) {
+
+            boolean terminationConditionReached = false;
+            int count = 0;
+            int max = 10;
+
+            do {
+                Collection<Chromosome> mating_pool = selector.select(problem, population,5);
+                Collection<Chromosome> offspring = recombinator.recombine(mating_pool);
+                offspring = mutator.mutate(offspring);
+                population = replacer.replace(population, offspring);
+                count++;
+            } while (count < max);
+            Chromosome best = population.iterator().next();
+            int b = best.getFitness();
+            for(Chromosome i : population) {
+                if (i.getFitness() > b) {
+                    best = i;
+                    b = i.getFitness();
+                }
+            }
+            System.out.println("Best fitness: " + b);
+        }
     }    
 }

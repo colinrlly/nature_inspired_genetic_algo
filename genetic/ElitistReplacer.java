@@ -1,10 +1,7 @@
 package genetic;
 
-import com.sun.xml.internal.xsom.impl.scd.Iterators;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class ElitistReplacer implements Replacer{
 

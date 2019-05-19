@@ -6,7 +6,7 @@ import java.util.Collection;
 public class SteadyStateElitist implements Replacer {
 
     //number of chromosomes to switch
-    private int n = 20;
+    private int n = 5;
     //random comment to commit change
 
     @Override
@@ -14,15 +14,14 @@ public class SteadyStateElitist implements Replacer {
         ArrayList<Chromosome> populations = new ArrayList<>(population);
         ArrayList<Chromosome> offsprings = new ArrayList<>(offspring);
         Collection<Chromosome> toAdd = new ArrayList<Chromosome>();
-
         //find n to add
         for(int x = 0; x < n; x++){
             int maxpop = populations.get(0).getFitness();
             int maxpos = 0;
             int count = 0;
-            for(Chromosome c : populations){
+            for(Chromosome c : offsprings){
                 int cFit = c.getFitness();
-                if(cFit > maxpop) {
+                if(cFit < maxpop) {
                     maxpop = cFit;
                     maxpos = count;
                 }
@@ -39,7 +38,7 @@ public class SteadyStateElitist implements Replacer {
             int count = 0;
             for(Chromosome c : populations){
                 int cFit = c.getFitness();
-                if(cFit < minpop) {
+                if(cFit > minpop) {
                     minpop = cFit;
                     minpos = count;
                 }

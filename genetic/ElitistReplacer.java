@@ -9,7 +9,7 @@ import java.util.Collection;
 public class ElitistReplacer implements Replacer{
 
     //number of chromosomes kept
-    private int n = 50;
+    //private int n = 0;
     //random comment to commit change
 
     @Override
@@ -17,28 +17,31 @@ public class ElitistReplacer implements Replacer{
         ArrayList<Chromosome> populations = new ArrayList<>(population);
         ArrayList<Chromosome> offsprings = new ArrayList<>(offspring);
         Collection<Chromosome> nextGeneration = new ArrayList<Chromosome>();
+        int n = population.size();
         for(int x = 0; x < n; x++){
-            int maxpop = 0;
+            int maxpop = 1000000000;
             int maxpos = 0;
             int count = 0;
             boolean first = true;
             for(Chromosome c : populations){
                 int cFit = c.getFitness();
-                if(cFit > maxpop) {
+                if(cFit < maxpop) {
                     maxpop = cFit;
                     maxpos = count;
                 }
                 count++;
             }
             count = 0;
+            int c1 = 0;
             for (Chromosome c: offsprings){
                 int cFit = c.getFitness();
-                if(cFit > maxpop) {
+                if(cFit < maxpop) {
                     maxpop = cFit;
                     maxpos = count;
                     first = false;
                 }
                 count++;
+                c1++;
             }
             if (first) {
                 Chromosome best = populations.get(maxpos);

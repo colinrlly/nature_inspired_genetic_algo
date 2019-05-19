@@ -53,7 +53,9 @@ public class ThreePointRecombinator implements Recombiner {
         // Collection that holds the offspring of the two given parent Chromosomes
         Collection<Chromosome> offspring = new ArrayList<>();
         Chromosome offspring1 = new Chromosome(parent1.getProblem());
+
         Chromosome offspring2 = new Chromosome(parent2.getProblem());
+
 
         // this block generates three random points within the bounds of the array size
         // and sorts them in ascending order to facilitate iteration though the chromosomes
@@ -102,7 +104,9 @@ public class ThreePointRecombinator implements Recombiner {
         }
 
         // add resulting offspring of parents into a collection and return it
+        offspring1.setInitialized();
         offspring.add(offspring1);
+        offspring2.setInitialized();
         offspring.add(offspring2);
 
         return offspring;

@@ -27,9 +27,9 @@ public class SteadyStateElitist implements Replacer {
                 }
                 count++;
             }
-            Chromosome best = populations.get(maxpos);
+            Chromosome best = offsprings.get(maxpos);
             toAdd.add(best);
-            populations.remove(best);
+            offsprings.remove(best);
         }
         //delete n from population
         for(int x = 0; x < n; x++){

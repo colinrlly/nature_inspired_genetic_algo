@@ -49,7 +49,7 @@ public class UniformRecombinator implements Recombiner {
     public Collection<Chromosome> uniformCrossover(Chromosome parent1, Chromosome parent2){
         // initialization of the probability used to determine from what parent does the offspring
         // recieve genes from
-        double prob = 0;
+        double prob;
 
         int row = parent1.getProblem().getNumMachines();
         int col = parent1.getProblem().getNumJobs();

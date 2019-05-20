@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * 4 jobs
  *              "j0 j1 j2 j3"
  * chromosome = [[0, 1, 2, 3], "m1"
- * 
+ *
  *              "j2 j1 j3 j0"
  *               [2, 1, 3, 0], "m2"
  * 
@@ -157,7 +157,6 @@ public class Chromosome {
     public int getFitness() {
         int longestTime = 0;
         int currentTime;
-
         if (!solutionCalculated) {
             calculateSolution();
         }

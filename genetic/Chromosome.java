@@ -155,7 +155,7 @@ public class Chromosome {
      * Fitness is max(time to complete a machine).
      */
     public int getFitness() {
-        int longestTime = 0;
+        int longestTime = 1000000;
         int currentTime;
         if (!solutionCalculated) {
             calculateSolution();
@@ -168,11 +168,12 @@ public class Chromosome {
                 currentTime += problem.getData(this.solution.get(i).get(j));
             }
 
-            if (currentTime > longestTime) {
+            if (currentTime < longestTime) {
                 longestTime = currentTime;
             }
         }
 
+        // System.out.println(longestTime);
         return longestTime;
     }
 

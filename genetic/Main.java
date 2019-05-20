@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Problem problem = new Problem(20, 300, "data/benchmark1_20_300.csv");
+        Problem problem = new Problem(20, 300, "data/benchmark2_20_300.csv");
         Initializer initializer = new InitializerRandom();
         //Collection<Chromosome> population = initializer.initializePopulation(problem, 20);
         //Collection<Chromosome> population2 = initializer.initializePopulation(problem, 20);
@@ -51,7 +51,7 @@ public class Main {
             int max = 20;
             Collection<Chromosome> population = initializer.initializePopulation(problem, 20);
             do {
-                Collection<Chromosome> mating_pool = selector.select(problem, population,20);
+                Collection<Chromosome> mating_pool = selector.select(problem, population, 20);
                 Collection<Chromosome> offspring = recombinator.recombine(mating_pool);
                 offspring = mutator.mutate(offspring);
                 population = replacer.replace(population, offspring);

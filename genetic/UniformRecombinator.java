@@ -78,8 +78,9 @@ public class UniformRecombinator implements Recombiner {
 
             }
         }
-
+        offspring1.setInitialized();
         offspring.add(offspring1);
+        offspring2.setInitialized();
         offspring.add(offspring2);
 
         return offspring;
